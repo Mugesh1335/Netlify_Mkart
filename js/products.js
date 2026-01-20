@@ -712,3 +712,113 @@ const mockProducts = [
     features: ['3 Premium Scents', 'Long Lasting', 'Gift Box', 'Unisex Fragrances']
   }
 ];
+
+// Load products on page load
+document.addEventListener('DOMContentLoaded', () => {
+  const productGrid = document.getElementById('productGrid');
+  const searchInput = document.getElementById('search');
+  const categoryFilter = document.getElementById('categoryFilter');
+
+  if (!productGrid) return;
+
+  // Populate category filter
+  const categories = ['All categories', ...new Set(mockProducts.map(p => p.category))];
+  categoryFilter.innerHTML = categories.map(cat => 
+    `<option value="${cat === 'All categories' ? '' : cat}">${cat}</option>`
+  ).join('');
+
+  function renderProducts(products) {
+    productGrid.innerHTML = products.map(product => {
+      const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+      return `
+        <div class="product-card" onclick="goToProduct(${product.id})">
+          <div class="product-image" style="background: linear-gradient(135deg, ${product.color}22 0%, ${product.color}44 100%);">
+            <span style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">${product.emoji}</span>
+          </div>
+          <div class="product-info">
+            <div class="product-category">${product.category}</div>
+            <h3 class="product-title">${product.title}</h3>
+            <div class="product-rating">${product.rating} (${product.reviews.toLocaleString()})</div>
+            <div class="product-price">
+              <span class="price-current">$${product.price.toFixed(2)}</span>
+              <span class="price-original">$${product.originalPrice.toFixed(2)}</span>
+              <span class="price-discount">${discount}%</span>
+            </div>
+            <div class="product-actions">
+              <button class="btn btn-primary" onclick="event.stopPropagation(); addToCart(${product.id})">Add to Cart</button>
+              <button class="btn btn-secondary" onclick="event.stopPropagation(); goToProduct(${product.id})">View</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function filterProducts() {
+    const searchTerm = searchInput.value.toLowerCase();
+    const selectedCategory = categoryFilter.value;
+
+    const filtered = mockProducts.filter(product => {
+      const matchesSearch = product.title.toLowerCase().includes(searchTerm) ||
+                           product.description.toLowerCase().includes(searchTerm);
+      const matchesCategory = !selectedCategory || product.category === selectedCategory;
+      return matchesSearch && matchesCategory;
+    });
+
+    renderProducts(filtered);
+  }
+
+  searchInput.addEventListener('input', filterProducts);
+  categoryFilter.addEventListener('change', filterProducts);
+
+  // Initial render
+  renderProducts(mockProducts);
+});
+
+function goToProduct(productId) {
+  window.location.href = `/product.html?id=${productId}`;
+}
+
+function addToCart(productId) {
+  const product = mockProducts.find(p => p.id === productId);
+  if (!product) return;
+
+  // Get cart from localStorage
+  let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  
+  const existingItem = cart.find(item => item.id === productId);
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      emoji: product.emoji,
+      quantity: 1
+    });
+  }
+
+  localStorage.setItem('cart', JSON.stringify(cart));
+  updateCartCount();
+  
+  // Show feedback
+  alert(`${product.title} added to cart!`);
+}
+
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const cartButton = document.querySelector('.cart-count');
+  if (cartButton) {
+    cartButton.textContent = totalItems;
+  }
+}
+
+// Get product by ID
+function getProductById(id) {
+  return mockProducts.find(p => p.id === parseInt(id));
+}
+
+// Initialize cart count on page load
+document.addEventListener('DOMContentLoaded', updateCartCount);
