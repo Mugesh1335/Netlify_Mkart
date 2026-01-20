@@ -5,22 +5,23 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ekart — Home</title>
   <link rel="stylesheet" href="css/styles.css" />
-  <!-- Snipcart CSS -->
-  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.6.0/default/snipcart.css" />
 </head>
 <body>
   <header class="site-header">
-    <h1><a href="/">Ekart</a></h1>
+    <h1><a href="/">🛒 Ekart</a></h1>
     <div class="header-actions">
-      <button class="snipcart-checkout">Cart</button>
-      <a href="account.html">Account</a>
-      <a href="admin.html">Admin</a>
+      <a href="cart.html" class="cart-icon">
+        🛒 Cart
+        <span class="cart-count">0</span>
+      </a>
+      <a href="account.html">👤 Account</a>
+      <a href="admin.html">⚙️ Admin</a>
     </div>
   </header>
 
   <main>
     <section class="controls">
-      <input id="search" placeholder="Search products..." aria-label="Search products" />
+      <input id="search" placeholder="🔍 Search products..." aria-label="Search products" />
       <select id="categoryFilter">
         <option value="">All categories</option>
       </select>
@@ -30,9 +31,6 @@
       <!-- products injected here -->
     </section>
   </main>
-
-  <script src="https://cdn.snipcart.com/themes/v3.6.0/default/snipcart.js"></script>
-  <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_API_KEY"></div>
 
   <script src="js/products.js"></script>
   <script src="js/auth.js"></script>

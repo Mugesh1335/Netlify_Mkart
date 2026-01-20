@@ -1,53 +1,92 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Admin — Ekart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel — Ekart</title>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <h1>Admin</h1>
-  <div id="adminApp">
-    <p>Loading...</p>
-  </div>
+  <header class="site-header">
+    <h1><a href="/">🛒 Ekart</a></h1>
+    <div class="header-actions">
+      <a href="/">🏠 Home</a>
+      <a href="account.html">👤 Account</a>
+      <a href="cart.html">🛒 Cart</a>
+    </div>
+  </header>
 
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
-  <script>
-    // Copy firebaseConfig from earlier
-    const firebaseConfig = { /* ... */ };
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-    const adminApp = document.getElementById('adminApp');
+  <main class="admin-container">
+    <h1>⚙️ Admin Panel</h1>
+    
+    <div class="admin-tabs">
+      <button class="admin-tab active" data-tab="dashboard">Dashboard</button>
+      <button class="admin-tab" data-tab="products">Products</button>
+      <button class="admin-tab" data-tab="orders">Orders</button>
+    </div>
 
-    auth.onAuthStateChanged(async (user) => {
-      if (!user) {
-        adminApp.innerHTML = '<p>Please <a href="account.html">login</a> as admin.</p>';
-        return;
-      }
-      const userDoc = await db.collection('users').doc(user.uid).get();
-      const data = userDoc.data() || {};
-      if (!data.isAdmin) {
-        adminApp.innerHTML = '<p>Not authorized.</p>';
-        return;
-      }
+    <div id="dashboard" class="admin-content active">
+      <h2>Dashboard</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total Products</div>
+          <div class="stat-value" id="totalProducts">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Total Orders</div>
+          <div class="stat-value" id="totalOrders">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Total Users</div>
+          <div class="stat-value" id="totalUsers">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Total Revenue</div>
+          <div class="stat-value" id="totalRevenue">$0</div>
+        </div>
+      </div>
+    </div>
 
-      adminApp.innerHTML = `
-        <button id="addProduct">Add product</button>
-        <div id="productList">Loading...</div>
-      `;
-      document.getElementById('addProduct').addEventListener('click', () => {
-        const id = 'p'+Date.now();
-        db.collection('products').doc(id).set({
-          id, title: 'New product', price: 9.99, category: 'Misc', description: '', images: [], variants: []
-        });
-      });
+    <div id="products" class="admin-content">
+      <h2>Manage Products</h2>
+      <div class="product-form">
+        <h3>Add New Product</h3>
+        <div class="form-group">
+          <label>Product Name</label>
+          <input id="productName" placeholder="Product name" />
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <input id="productCategory" placeholder="Category" />
+        </div>
+        <div class="form-group">
+          <label>Price</label>
+          <input id="productPrice" type="number" placeholder="Price" />
+        </div>
+        <div class="form-group">
+          <label>Original Price</label>
+          <input id="productOriginalPrice" type="number" placeholder="Original price" />
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <input id="productDescription" placeholder="Description" />
+        </div>
+        <button class="btn btn-primary" onclick="addNewProduct()">Add Product</button>
+      </div>
+      <div id="productsList" class="products-list"></div>
+    </div>
 
-      // show products from Firestore
-      const list = document.getElementById('productList');
-      db.collection('products').onSnapshot(snap => {
+    <div id="orders" class="admin-content">
+      <h2>Orders</h2>
+      <div id="ordersList" class="products-list"></div>
+    </div>
+  </main>
+
+  <script src="js/products.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
         list.innerHTML = '';
         snap.forEach(doc => {
           const p = doc.data();
