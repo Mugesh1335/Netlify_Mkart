@@ -1,0 +1,17 @@
+{
+  "name": "ekart-static-starter",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "netlify dev",
+    "build": "echo \"No build step for static site\""
+  },
+  "dependencies": {
+    "firebase-admin": "^11.11.0",
+    "@sendgrid/mail": "^7.9.0",
+    "crypto": "^1.0.1"
+  },
+  "devDependencies": {
+    "netlify-cli": "^11.11.0"
+  }
+}

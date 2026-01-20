@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Account — Ekart</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1><a href="/">Ekart</a></h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="admin.html">Admin</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="authSection">
+      <h2>Sign up / Login</h2>
+
+      <div id="authForms">
+        <div>
+          <h3>Create account</h3>
+          <input id="signupEmail" placeholder="Email" type="email" />
+          <input id="signupPassword" placeholder="Password" type="password" />
+          <button id="signupBtn">Sign up</button>
+        </div>
+
+        <div>
+          <h3>Login</h3>
+          <input id="loginEmail" placeholder="Email" type="email" />
+          <input id="loginPassword" placeholder="Password" type="password" />
+          <button id="loginBtn">Login</button>
+        </div>
+      </div>
+
+      <div id="userInfo" style="display:none">
+        <p>Signed in as <span id="userEmail"></span></p>
+        <button id="logoutBtn">Logout</button>
+      </div>
+    </section>
+
+    <section id="ordersSection" aria-live="polite">
+      <h2>Order History</h2>
+      <div id="ordersList">Please login to view your orders.</div>
+    </section>
+  </main>
+
+  <!-- Firebase SDK (compat for simpler migration in this starter) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+  <script>
+    // Replace with your Firebase client config (from Firebase console)
+    const firebaseConfig = {
+      apiKey: "FIREBASE_API_KEY",
+      authDomain: "PROJECT.firebaseapp.com",
+      projectId: "PROJECT_ID",
+      // other fields...
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    const signupBtn = document.getElementById('signupBtn');
+    const loginBtn = document.getElementById('loginBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    signupBtn.addEventListener('click', async () => {
+      const email = document.getElementById('signupEmail').value;
+      const password = document.getElementById('signupPassword').value;
+      try {
+        const u = await auth.createUserWithEmailAndPassword(email, password);
+        await db.collection('users').doc(u.user.uid).set({ email });
+        alert('Account created!');
+      } catch (e) { alert(e.message) }
+    });
+
+    loginBtn.addEventListener('click', async () => {
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+      try {
+        await auth.signInWithEmailAndPassword(email, password);
+      } catch (e) { alert(e.message) }
+    });
+
+    logoutBtn.addEventListener('click', () => auth.signOut());
+
+    auth.onAuthStateChanged(async user => {
+      const authSection = document.getElementById('authSection');
+      const userInfo = document.getElementById('userInfo');
+      const userEmailEl = document.getElementById('userEmail');
+      const ordersList = document.getElementById('ordersList');
+
+      if (!user) {
+        userInfo.style.display = 'none';
+        authSection.querySelector('#authForms').style.display = 'flex';
+        ordersList.innerHTML = 'Please login to view your orders.';
+        return;
+      }
+
+      userInfo.style.display = '';
+      authSection.querySelector('#authForms').style.display = 'none';
+      userEmailEl.textContent = user.email;
+
+      // Load order history (orders must be written to Firestore by webhook)
+      const snap = await db.collection('orders').where('email','==', user.email).orderBy('createdAt','desc').get();
+      if (snap.empty) {
+        ordersList.innerHTML = '<p>No orders yet.</p>';
+      } else {
+        ordersList.innerHTML = '';
+        snap.forEach(doc => {
+          const o = doc.data();
+          const div = document.createElement('div');
+          div.className = 'card';
+          div.innerHTML = `<strong>Order</strong> — ${doc.id}<br>Email: ${o.email || ''}<br><pre style="white-space:pre-wrap">${JSON.stringify(o.snipcartOrder?.items || o.snipcartOrder, null, 2)}</pre>`;
+          ordersList.appendChild(div);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
