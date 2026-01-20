@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — Mkart</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1><a href="/">🛒 Mkart</a></h1>
+    <nav class="main-nav">
+      <a href="/" class="nav-link">🏠 Home</a>
+      <a href="/" class="nav-link">🛍️ Shop</a>
+      <a href="offers.html" class="nav-link">🎁 Offers</a>
+      <a href="about.html" class="nav-link">ℹ️ About</a>
+      <a href="contact.html" class="nav-link">📞 Contact</a>
+      <a href="faq.html" class="nav-link active">❓ FAQ</a>
+    </nav>
+    <div class="header-actions">
+      <a href="cart.html">🛒 Cart</a>
+      <a href="account.html">👤 Account</a>
+    </div>
+  </header>
+
+  <main style="max-width: 900px; margin: 0 auto; padding: 2rem 1rem;">
+    <h1 style="text-align: center; color: var(--primary); margin-bottom: 0.5rem;">❓ Frequently Asked Questions</h1>
+    <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">Find answers to common questions about shopping on Mkart</p>
+
+    <div class="faq-container">
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <span>📦 How long does shipping take?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Standard shipping typically takes 5-7 business days. Express shipping options are available for faster delivery. Delivery times may vary based on your location and product availability. You'll receive a tracking number once your order ships.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <span>💳 What payment methods do you accept?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>We accept all major credit cards (Visa, Mastercard, American Express), debit cards, digital wallets (Apple Pay, Google Pay), and bank transfers. All payments are processed securely using industry-standard encryption.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <span>↩️ What is your return policy?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>We offer a 30-day return policy on most items. Products must be unused and in original packaging. Clothing items must have tags attached. To initiate a return, please contact our customer service team with your order number.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <span>🔐 Is my information safe?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes! We use SSL encryption to protect all personal and payment information. Your data is never shared with third parties without your consent. We comply with all data protection regulations and industry security standards.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <span>🎁 Do you offer gift cards?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes! We offer digital and physical gift cards in various denominations. Gift cards can be purchased on our website and are redeemable for any product. They make perfect gifts for any occasion!</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <span>📱 Can I track my order?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Absolutely! Once your order ships, you'll receive a tracking number via email. You can use this number to track your package in real-time through our website or the carrier's website.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <span>👥 How do I create an account?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Creating an account is quick and easy! Click on "Account" in the header navigation, then select "Sign Up". Provide your email and password, and you're done! Having an account helps us personalize your shopping experience and makes checkout faster.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <span>🛒 Can I modify my order after placing it?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>If your order hasn't been processed yet, you can modify or cancel it. Please contact our customer service team as soon as possible. Once an order has shipped, modifications are no longer possible, but you can initiate a return afterward.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <span>💬 How can I contact customer support?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>You can reach our customer support team via email at support@mkart.com or by phone at +1 (234) 567-890. We're available Monday-Friday, 9AM-6PM EST. Visit our Contact page for more information and to send us a message.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <span>🏷️ How do I apply a discount code?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>During checkout, you'll see a field to enter a discount code. Simply paste your code and click "Apply". The discount will be applied to your order total. Make sure to check our Offers page for the latest promotional codes!</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <style>
+    .faq-container {
+      margin: 2rem 0;
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      overflow: hidden;
+      background: white;
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 1.5rem;
+      background: #f5f5f5;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--primary);
+      transition: background 0.3s ease;
+    }
+
+    .faq-question:hover {
+      background: #eeeeee;
+    }
+
+    .faq-question.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    .faq-toggle {
+      font-size: 1.5rem;
+      font-weight: bold;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-question.active .faq-toggle {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      padding: 1.5rem;
+      background: white;
+      color: var(--text-light);
+      line-height: 1.6;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .faq-answer.active {
+      max-height: 500px;
+    }
+  </style>
+
+  <script>
+    function toggleFAQ(button) {
+      button.classList.toggle('active');
+      const answer = button.nextElementSibling;
+      answer.classList.toggle('active');
+    }
+  </script>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>
