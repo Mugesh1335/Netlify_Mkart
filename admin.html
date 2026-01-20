@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Admin — Ekart</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <h1>Admin</h1>
+  <div id="adminApp">
+    <p>Loading...</p>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <script>
+    // Copy firebaseConfig from earlier
+    const firebaseConfig = { /* ... */ };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    const adminApp = document.getElementById('adminApp');
+
+    auth.onAuthStateChanged(async (user) => {
+      if (!user) {
+        adminApp.innerHTML = '<p>Please <a href="account.html">login</a> as admin.</p>';
+        return;
+      }
+      const userDoc = await db.collection('users').doc(user.uid).get();
+      const data = userDoc.data() || {};
+      if (!data.isAdmin) {
+        adminApp.innerHTML = '<p>Not authorized.</p>';
+        return;
+      }
+
+      adminApp.innerHTML = `
+        <button id="addProduct">Add product</button>
+        <div id="productList">Loading...</div>
+      `;
+      document.getElementById('addProduct').addEventListener('click', () => {
+        const id = 'p'+Date.now();
+        db.collection('products').doc(id).set({
+          id, title: 'New product', price: 9.99, category: 'Misc', description: '', images: [], variants: []
+        });
+      });
+
+      // show products from Firestore
+      const list = document.getElementById('productList');
+      db.collection('products').onSnapshot(snap => {
+        list.innerHTML = '';
+        snap.forEach(doc => {
+          const p = doc.data();
+          const div = document.createElement('div');
+          div.innerHTML = `<strong>${p.title}</strong> — $${p.price} <button data-id="${p.id}" class="delete">Delete</button>`;
+          list.appendChild(div);
+        });
+        list.querySelectorAll('.delete').forEach(btn => {
+          btn.addEventListener('click', async () => {
+            const id = btn.getAttribute('data-id');
+            await db.collection('products').doc(id).delete();
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
