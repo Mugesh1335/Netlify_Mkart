@@ -7,10 +7,11 @@ const mockProducts = [
     price: 89.99,
     originalPrice: 149.99,
     emoji: '🎧',
-    rating: 4.5,
+    color: '#ff6b6b',
+    rating: 4.8,
     reviews: 2843,
-    description: 'High-quality sound with noise cancellation',
-    features: ['Noise Cancellation', 'Bluetooth 5.0', '30-hour Battery', 'Comfort Fit']
+    description: 'Premium noise cancellation with superior sound quality',
+    features: ['Active Noise Cancellation', 'Bluetooth 5.0', '40-hour Battery', 'Comfort Fit']
   },
   {
     id: 2,
@@ -19,70 +20,76 @@ const mockProducts = [
     price: 24.99,
     originalPrice: 39.99,
     emoji: '💧',
-    rating: 4.8,
+    color: '#4ecdc4',
+    rating: 4.9,
     reviews: 5120,
-    description: 'Keep your drink hot or cold for hours',
-    features: ['Double-Walled Insulation', 'Leak-Proof', 'BPA-Free', 'Multiple Colors']
+    description: 'Keep your drink hot or cold for hours with style',
+    features: ['Double-Walled Insulation', 'Leak-Proof', 'BPA-Free', '10 Colors Available']
   },
   {
     id: 3,
-    title: 'Wireless Mouse',
+    title: 'Wireless Mouse Ultra',
     category: 'Electronics',
     price: 19.99,
     originalPrice: 34.99,
     emoji: '🖱️',
-    rating: 4.3,
+    color: '#ffe66d',
+    rating: 4.7,
     reviews: 3421,
-    description: 'Precision tracking wireless mouse',
-    features: ['2.4GHz Wireless', 'Adjustable DPI', 'Ergonomic Design', '18-month Battery']
+    description: 'Ergonomic wireless mouse with precision tracking',
+    features: ['2.4GHz Wireless', 'Adjustable DPI', 'Ergonomic Design', '24-month Battery']
   },
   {
     id: 4,
-    title: 'USB-C Charging Cable',
+    title: 'USB-C Fast Charging Cable',
     category: 'Electronics',
     price: 9.99,
     originalPrice: 19.99,
     emoji: '🔌',
-    rating: 4.6,
+    color: '#a8e6cf',
+    rating: 4.8,
     reviews: 8932,
-    description: 'Fast charging and data transfer',
-    features: ['Fast Charging', '10 Gbps Data Transfer', 'Durable Nylon', '2-meter Length']
+    description: 'Ultra-fast charging and data transfer cable',
+    features: ['Fast Charging 100W', '10 Gbps Data Transfer', 'Durable Nylon', '3-meter Length']
   },
   {
     id: 5,
-    title: 'Yoga Mat',
+    title: 'Premium Yoga Mat',
     category: 'Sports',
     price: 29.99,
     originalPrice: 49.99,
     emoji: '🧘',
-    rating: 4.7,
+    color: '#ff8cc3',
+    rating: 4.9,
     reviews: 4521,
-    description: 'Non-slip surface with carrying strap',
-    features: ['6mm Thickness', 'Non-Slip Surface', 'Eco-Friendly', 'Carrying Strap']
+    description: 'Professional non-slip yoga mat with carrying strap',
+    features: ['8mm Thickness', 'Non-Slip TPE Material', 'Eco-Friendly', 'Free Carrying Strap']
   },
   {
     id: 6,
-    title: 'LED Desk Lamp',
+    title: 'Smart LED Desk Lamp',
     category: 'Home',
     price: 34.99,
     originalPrice: 59.99,
     emoji: '💡',
-    rating: 4.4,
+    color: '#ffd93d',
+    rating: 4.6,
     reviews: 2103,
-    description: 'Adjustable brightness with USB charging',
-    features: ['Dimmable LED', 'USB Charging Port', 'Flexible Neck', 'Eye-Care Technology']
+    description: 'RGB smart lamp with USB charging and app control',
+    features: ['RGB Color Control', 'USB Charging Port', 'Flexible Neck', 'Eye-Care Technology']
   },
   {
     id: 7,
-    title: 'Portable Phone Stand',
+    title: 'Phone Stand Magnetic',
     category: 'Electronics',
     price: 14.99,
     originalPrice: 24.99,
     emoji: '📱',
-    rating: 4.5,
+    color: '#f38181',
+    rating: 4.8,
     reviews: 6543,
-    description: 'Universal mount for all phones',
-    features: ['Universal Compatibility', 'Adjustable Angle', 'Aluminum Body', 'Portable']
+    description: 'Universal magnetic mount for all smartphones',
+    features: ['Magnetic Grip', 'Adjustable Angle', 'Aluminum Body', 'Ultra Portable']
   },
   {
     id: 8,
@@ -91,58 +98,167 @@ const mockProducts = [
     price: 79.99,
     originalPrice: 129.99,
     emoji: '🍳',
-    rating: 4.6,
+    color: '#aa96da',
+    rating: 4.7,
     reviews: 3214,
-    description: '10-piece professional cooking set',
-    features: ['10-Piece Set', 'Heat-Resistant Handles', 'Dishwasher Safe', 'Induction Compatible']
+    description: '12-piece professional non-stick cookware set',
+    features: ['12-Piece Set', 'Non-Stick Coating', 'Dishwasher Safe', 'Induction Compatible']
   },
   {
     id: 9,
-    title: 'Running Shoes',
+    title: 'Professional Running Shoes',
     category: 'Sports',
     price: 79.99,
     originalPrice: 129.99,
     emoji: '👟',
-    rating: 4.7,
+    color: '#fcbad3',
+    rating: 4.8,
     reviews: 5432,
-    description: 'Comfortable and durable running shoes',
+    description: 'Advanced cushioning for maximum comfort',
     features: ['Memory Foam Insole', 'Breathable Mesh', 'Cushioned Heel', 'Lightweight']
   },
   {
     id: 10,
-    title: 'Portable Power Bank',
+    title: 'Portable Power Bank 30000mAh',
     category: 'Electronics',
     price: 39.99,
     originalPrice: 69.99,
     emoji: '🔋',
-    rating: 4.5,
+    color: '#b5ead7',
+    rating: 4.9,
     reviews: 7821,
-    description: '20000mAh capacity with fast charging',
-    features: ['20000mAh Capacity', 'Fast Charging', 'Dual USB Ports', 'LED Display']
+    description: 'Ultra-fast charging power bank with dual USB',
+    features: ['30000mAh Capacity', 'Super Fast Charging', 'Dual USB Ports', 'LED Display']
   },
   {
     id: 11,
-    title: 'Coffee Maker',
+    title: 'Premium Coffee Maker',
     category: 'Home',
     price: 44.99,
     originalPrice: 74.99,
     emoji: '☕',
-    rating: 4.4,
+    color: '#c7ceea',
+    rating: 4.7,
     reviews: 2876,
-    description: 'Automatic drip coffee maker',
-    features: ['12-Cup Capacity', 'Programmable Timer', 'Thermal Carafe', 'Auto Shut-off']
+    description: 'Automatic drip coffee maker with temperature control',
+    features: ['15-Cup Capacity', 'Programmable Timer', 'Thermal Carafe', 'Auto Shut-off']
   },
   {
     id: 12,
-    title: 'Desk Organizer',
+    title: 'Modern Desk Organizer',
     category: 'Home',
     price: 19.99,
     originalPrice: 34.99,
     emoji: '📦',
-    rating: 4.3,
+    color: '#ffdac1',
+    rating: 4.8,
     reviews: 1543,
-    description: 'Multi-compartment desk organizer',
-    features: ['5 Compartments', 'Bamboo Material', 'Space-Saving', 'Easy Assembly']
+    description: '6-compartment bamboo desk organizer',
+    features: ['6 Compartments', 'Bamboo Material', 'Space-Saving', 'Easy Assembly']
+  },
+  {
+    id: 13,
+    title: 'Wireless Bluetooth Speaker',
+    category: 'Electronics',
+    price: 49.99,
+    originalPrice: 89.99,
+    emoji: '🔊',
+    color: '#a8d8ea',
+    rating: 4.8,
+    reviews: 4200,
+    description: 'Portable speaker with 360° surround sound',
+    features: ['360° Sound', 'Waterproof IPX7', '20-hour Battery', 'Built-in Microphone']
+  },
+  {
+    id: 14,
+    title: 'Smartwatch Pro',
+    category: 'Electronics',
+    price: 149.99,
+    originalPrice: 249.99,
+    emoji: '⌚',
+    color: '#ffccff',
+    rating: 4.7,
+    reviews: 3450,
+    description: 'Advanced fitness tracking smartwatch',
+    features: ['Heart Rate Monitor', 'Sleep Tracking', '14-day Battery', 'Water Resistant']
+  },
+  {
+    id: 15,
+    title: 'Portable Projector HD',
+    category: 'Electronics',
+    price: 199.99,
+    originalPrice: 349.99,
+    emoji: '🎬',
+    color: '#e0aaff',
+    rating: 4.6,
+    reviews: 2100,
+    description: '1080P portable projector for home theater',
+    features: ['1080P Resolution', '2000 Lumens', 'Built-in Speaker', 'HDMI & WiFi']
+  },
+  {
+    id: 16,
+    title: 'Gaming Mouse RGB',
+    category: 'Electronics',
+    price: 59.99,
+    originalPrice: 99.99,
+    emoji: '🖱️',
+    color: '#ffb3ba',
+    rating: 4.9,
+    reviews: 6234,
+    description: 'Professional gaming mouse with RGB lighting',
+    features: ['16,000 DPI', 'RGB Lighting', '8 Programmable Buttons', 'Ultra Light']
+  },
+  {
+    id: 17,
+    title: 'USB Hub 7-Port',
+    category: 'Electronics',
+    price: 29.99,
+    originalPrice: 49.99,
+    emoji: '🔗',
+    color: '#ffffcc',
+    rating: 4.5,
+    reviews: 2987,
+    description: 'Multi-port USB hub with fast charging',
+    features: ['7 USB Ports', 'Fast Charging', 'LED Indicators', 'Aluminum Build']
+  },
+  {
+    id: 18,
+    title: 'Fitness Tracker Band',
+    category: 'Sports',
+    price: 34.99,
+    originalPrice: 59.99,
+    emoji: '⛹️',
+    color: '#ffcccc',
+    rating: 4.7,
+    reviews: 3876,
+    description: 'Advanced fitness tracker with multiple sport modes',
+    features: ['Steps Counter', 'Calorie Tracker', '10-day Battery', 'Waterproof']
+  },
+  {
+    id: 19,
+    title: 'Portable Phone Charger Fast',
+    category: 'Electronics',
+    price: 24.99,
+    originalPrice: 44.99,
+    emoji: '⚡',
+    color: '#ffcccc',
+    rating: 4.8,
+    reviews: 5432,
+    description: 'Ultra-compact fast charging power adapter',
+    features: ['65W Fast Charging', 'Dual USB-C Ports', 'Foldable Plug', 'Travel Friendly']
+  },
+  {
+    id: 20,
+    title: 'Mechanical Keyboard RGB',
+    category: 'Electronics',
+    price: 89.99,
+    originalPrice: 149.99,
+    emoji: '⌨️',
+    color: '#ffccee',
+    rating: 4.9,
+    reviews: 4567,
+    description: 'Professional mechanical gaming keyboard',
+    features: ['RGB Switches', 'Programmable Keys', 'Aluminum Frame', 'USB-C Connection']
   }
 ];
 
@@ -165,15 +281,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
       return `
         <div class="product-card" onclick="goToProduct(${product.id})">
-          <div class="product-image">${product.emoji}</div>
+          <div class="product-image" style="background: linear-gradient(135deg, ${product.color}22 0%, ${product.color}44 100%);">
+            <span style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">${product.emoji}</span>
+          </div>
           <div class="product-info">
             <div class="product-category">${product.category}</div>
             <h3 class="product-title">${product.title}</h3>
-            <div class="product-rating">⭐ ${product.rating} (${product.reviews.toLocaleString()} reviews)</div>
+            <div class="product-rating">${product.rating} (${product.reviews.toLocaleString()})</div>
             <div class="product-price">
               <span class="price-current">$${product.price.toFixed(2)}</span>
               <span class="price-original">$${product.originalPrice.toFixed(2)}</span>
-              <span class="price-discount">${discount}% OFF</span>
+              <span class="price-discount">${discount}%</span>
             </div>
             <div class="product-actions">
               <button class="btn btn-primary" onclick="event.stopPropagation(); addToCart(${product.id})">Add to Cart</button>

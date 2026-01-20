@@ -52,16 +52,21 @@ function loadDashboard() {
 function loadProducts() {
   const list = document.getElementById('productsList');
 
-  list.innerHTML = adminProducts.map(product => {
+  list.innerHTML = adminProducts.map((product, index) => {
     const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+    const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#a8e6cf', '#ff8cc3', '#ffd93d', '#f38181', '#aa96da'];
+    const bgColor = colors[index % colors.length];
+    
     return `
       <div class="admin-product-card">
-        <div class="admin-product-image">${product.emoji}</div>
+        <div class="admin-product-image" style="background: linear-gradient(135deg, ${bgColor}33, ${bgColor}55); font-size: 2.5rem;">
+          ${product.emoji}
+        </div>
         <div class="admin-product-details">
           <h3>${product.title}</h3>
-          <p><strong>Category:</strong> ${product.category}</p>
-          <p><strong>Price:</strong> $${product.price.toFixed(2)} <span style="text-decoration: line-through;">$${product.originalPrice.toFixed(2)}</span></p>
-          <p><strong>Discount:</strong> ${discount}% | <strong>Stock:</strong> In Stock</p>
+          <p><strong>Category:</strong> <span style="background: linear-gradient(135deg, var(--accent), #ff8c42); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; display: inline-block;">${product.category}</span></p>
+          <p><strong>Price:</strong> <span style="color: var(--accent); font-weight: 700;">$${product.price.toFixed(2)}</span> <span style="text-decoration: line-through; color: var(--text-light);">$${product.originalPrice.toFixed(2)}</span></p>
+          <p><strong>Discount:</strong> <span style="background: linear-gradient(135deg, #e63946, #d62828); color: white; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.85rem; font-weight: 700; display: inline-block;">${discount}%</span> | <strong>Stock:</strong> ✓ In Stock</p>
         </div>
         <div class="admin-actions">
           <button class="btn btn-secondary" onclick="editProduct(${product.id})">Edit</button>

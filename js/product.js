@@ -27,7 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 
     <div class="product-detail">
-      <div class="product-detail-image">${product.emoji}</div>
+      <div class="product-detail-image" style="background: linear-gradient(135deg, ${product.color}33 0%, ${product.color}55 100%);">
+        <span style="font-size: 5rem; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));">${product.emoji}</span>
+      </div>
       
       <div class="product-detail-info">
         <h1>${product.title}</h1>
@@ -39,17 +41,17 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="detail-price">
           <span class="price-current">$${product.price.toFixed(2)}</span>
           <span class="price-original">$${product.originalPrice.toFixed(2)}</span>
-          <span class="price-discount">${discount}% OFF</span>
+          <span class="price-discount" style="background: linear-gradient(135deg, #e63946, #d62828);">${discount}% OFF</span>
         </div>
 
         <div class="availability in-stock">
-          ✓ In Stock
+          ✓ In Stock - Free Shipping Available
         </div>
 
         <p class="detail-description">${product.description}</p>
 
         <div class="detail-features">
-          <h3>Key Features:</h3>
+          <h3>✨ Key Features:</h3>
           <ul>
             ${product.features.map(feature => `<li>${feature}</li>`).join('')}
           </ul>
@@ -65,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
 
         <div class="detail-actions">
-          <button class="btn btn-primary btn-accent" onclick="addProductToCart(${product.id})">
+          <button class="btn btn-primary btn-accent" onclick="addProductToCart(${product.id})" style="background: linear-gradient(135deg, var(--accent), #ff8c42);">
             🛒 Add to Cart
           </button>
           <button class="btn btn-secondary" onclick="buyNow(${product.id})">
@@ -73,11 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
           </button>
         </div>
 
-        <div style="margin-top: 2rem; padding: 1rem; background: var(--bg-light); border-radius: 8px;">
-          <h3>Shipping & Returns</h3>
+        <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #f0f7ff 0%, #e0f2ff 100%); border-radius: 8px; border-left: 4px solid var(--primary);">
+          <h3 style="color: var(--primary); margin-bottom: 0.75rem;">📦 Why Choose Us?</h3>
           <p>✓ Free shipping on orders over $50</p>
-          <p>✓ 30-day returns guarantee</p>
+          <p>✓ 30-day money-back guarantee</p>
           <p>✓ Secure checkout with SSL encryption</p>
+          <p>✓ 24/7 customer support</p>
         </div>
       </div>
     </div>
